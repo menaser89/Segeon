@@ -11,18 +11,36 @@ new (Backbone.Router.extend({
   routes: module.routes,
 
   index: function() {
-      Application.Collections.todoCollection = new Application.Collections.todos();
+      console.log('hello world');
 
-      var view = new Application.Views["todos/index"]({
-          model: Application.Collections.todoCollection
-      });
 
+      Application.Collections.todosCollection = new Application.Collections.todos();
+
+//      console.log(Application.Collections.todosCollection);
+
+      var view = new Application.Views["index"] ();
       Application.setView(view);
 
+//      Application.Collections.todosCollection.fetch({
+//
+//          success: function(collection, response, options) {
+//              console.log('setting view');
+//              var view = new Application.Views ["index"]({
+//                  collection: collection
+//              });
+//              Application.setView(view);
+//
+//
+//          },
+//
+//          error: function (collection) {
+//              console.log('collection could not be fetched')
+//          }
+//      })
   }
 }));
 ;;
-Handlebars.templates['todos/index'] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+Handlebars.templates['index'] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, helper, options, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, buffer = "\n    <li ";
   stack1 = ((helper = helpers.done || (depth0 && depth0.done)),(options={"name":"done","hash":{},"fn":this.program(2, data),"inverse":this.noop,"data":data}),(typeof helper === functionType ? helper.call(depth0, options) : helper));
   if (!helpers.done) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
@@ -46,7 +64,7 @@ Handlebars.templates['todos/index'] = Handlebars.template({"1":function(depth0,h
   if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer + "\n<form>\n    <input name=\"title\">\n    <input type=\"submit\" value=\"Nueva Tarea\">\n</form>";
 },"useData":true});Application.View.extend({
-  name: "todos/index",
+  name: "index",
   events: {
       "submit form": function(event) {
           event.preventDefault();
@@ -62,6 +80,7 @@ Handlebars.templates['todos/index'] = Handlebars.template({"1":function(depth0,h
 ;;
 Application.Model.extend({
   name: "todo",
+
   defaults: {
       title: "no title....",
       done: false
@@ -73,7 +92,9 @@ Application.Model.extend({
 ;;
 Application.Collection.extend({
   name: "todos",
-  model: Application.Models["Todo"],
+
+  model: Application.Models["todo"],
+
   localStorage: new Backbone.LocalStorage("TodoCollection")
 });
 

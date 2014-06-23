@@ -35,9 +35,9 @@
       },
       "scripts": [
         "js/routers/todos.js",
-        "js/views/todos/index.js",
-        "js/models/todos/todo.js",
-        "js/collections/todos/todos.js"
+        "js/views/index.js",
+        "js/models/todo.js",
+        "js/collections/todos.js"
       ],
       "styles": [
         "stylesheets/todos.css"

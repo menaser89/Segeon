@@ -1,6 +1,8 @@
 Application.Collection.extend({
-  name: "todosCollection",
-  model: Application.Models["todosCollection"],
+  name: "todos",
+
+  model: Application.Models["todo"],
+
   localStorage: new Backbone.LocalStorage("TodoCollection")
 });
 
