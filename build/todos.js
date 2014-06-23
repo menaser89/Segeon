@@ -14,62 +14,48 @@ new (Backbone.Router.extend({
       console.log('hello world');
 
 
-      Application.Collections.todosCollection = new Application.Collections.todos();
+      var collection = new Application.Collections.todos();
 
-//      console.log(Application.Collections.todosCollection);
-
-      var view = new Application.Views["index"] ();
+      var view = new Application.Views["index"] ({
+          collection: collection
+      });
       Application.setView(view);
 
-//      Application.Collections.todosCollection.fetch({
-//
-//          success: function(collection, response, options) {
-//              console.log('setting view');
-//              var view = new Application.Views ["index"]({
-//                  collection: collection
-//              });
-//              Application.setView(view);
-//
-//
-//          },
-//
-//          error: function (collection) {
-//              console.log('collection could not be fetched')
-//          }
-//      })
   }
 }));
 ;;
 Handlebars.templates['index'] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var stack1, helper, options, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, buffer = "\n    <li ";
+  var stack1, helper, options, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, buffer = "\n            <li ";
   stack1 = ((helper = helpers.done || (depth0 && depth0.done)),(options={"name":"done","hash":{},"fn":this.program(2, data),"inverse":this.noop,"data":data}),(typeof helper === functionType ? helper.call(depth0, options) : helper));
   if (!helpers.done) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ">\n        <input type=\"checkbox\" ";
+  buffer += ">\n                <input type=\"checkbox\" ";
   stack1 = ((helper = helpers.done || (depth0 && depth0.done)),(options={"name":"done","hash":{},"fn":this.program(4, data),"inverse":this.noop,"data":data}),(typeof helper === functionType ? helper.call(depth0, options) : helper));
   if (!helpers.done) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  return buffer + ">\n        "
+  return buffer + ">\n                "
     + escapeExpression(((helper = helpers.title || (depth0 && depth0.title)),(typeof helper === functionType ? helper.call(depth0, {"name":"title","hash":{},"data":data}) : helper)))
-    + "\n    </li>\n";
+    + "\n            </li>\n        ";
 },"2":function(depth0,helpers,partials,data) {
   return "class=\"done\"";
   },"4":function(depth0,helpers,partials,data) {
   return "checked";
   },"compiler":[5,">= 2.0.0"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "\n";
+  var stack1, buffer = "<div class=\"container\">\n    <div style=\"text-align: center\">\n        <h1>Recordatorios</h1>\n        ";
   stack1 = helpers.collection.call(depth0, {"name":"collection","hash":{
     'tag': ("ul")
   },"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  return buffer + "\n<form>\n    <input name=\"title\">\n    <input type=\"submit\" value=\"Nueva Tarea\">\n</form>";
+  return buffer + "\n        <form>\n            <input name=\"title\">\n            <input type=\"submit\" value=\"Nueva Tarea\">\n        </form>\n    </div>\n</div>";
 },"useData":true});Application.View.extend({
   name: "index",
   events: {
-      "submit form": function(event) {
-          event.preventDefault();
+      "submit form": function (event) {
+          console.log("Hola");
+          event.preventDefault(); //No hace un evio de formulario le quita este valor por defecto
           var attrs = this.serialize();
           this.collection.add(attrs);
+          attrs.save();
           this.$('input[name=title]').val('');
       }
   }

@@ -1,10 +1,12 @@
 Application.View.extend({
   name: "index",
   events: {
-      "submit form": function(event) {
-          event.preventDefault();
+      "submit form": function (event) {
+          console.log("Hola");
+          event.preventDefault(); //No hace un evio de formulario le quita este valor por defecto
           var attrs = this.serialize();
           this.collection.add(attrs);
+          attrs.save();
           this.$('input[name=title]').val('');
       }
   }

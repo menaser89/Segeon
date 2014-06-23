@@ -1,11 +1,15 @@
-
-{{#collection tag="ul"}}
-    <li {{#done}}class="done"{{/done}}>
-        <input type="checkbox" {{#done}}checked{{/done}}>
-        {{title}}
-    </li>
-{{/collection}}
-<form>
-    <input name="title">
-    <input type="submit" value="Nueva Tarea">
-</form>
+<div class="container">
+    <div style="text-align: center">
+        <h1>Recordatorios</h1>
+        {{#collection tag="ul"}}
+            <li {{#done}}class="done"{{/done}}>
+                <input type="checkbox" {{#done}}checked{{/done}}>
+                {{title}}
+            </li>
+        {{/collection}}
+        <form>
+            <input name="title">
+            <input type="submit" value="Nueva Tarea">
+        </form>
+    </div>
+</div>

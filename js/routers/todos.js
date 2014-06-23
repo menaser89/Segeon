@@ -5,28 +5,12 @@ new (Backbone.Router.extend({
       console.log('hello world');
 
 
-      Application.Collections.todosCollection = new Application.Collections.todos();
+      var collection = new Application.Collections.todos();
 
-//      console.log(Application.Collections.todosCollection);
-
-      var view = new Application.Views["index"] ();
+      var view = new Application.Views["index"] ({
+          collection: collection
+      });
       Application.setView(view);
 
-//      Application.Collections.todosCollection.fetch({
-//
-//          success: function(collection, response, options) {
-//              console.log('setting view');
-//              var view = new Application.Views ["index"]({
-//                  collection: collection
-//              });
-//              Application.setView(view);
-//
-//
-//          },
-//
-//          error: function (collection) {
-//              console.log('collection could not be fetched')
-//          }
-//      })
   }
 }));
