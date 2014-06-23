@@ -1,0 +1,27 @@
+{
+  "name": "bootstrap",
+  "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
+  "version": "3.1.1",
+  "keywords": [
+    "bootstrap",
+    "css"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "jquery": ">=1.9.0"
+  },
+  "main": "js/bootstrap.js",
+  "ignore": [
+    "component.json",
+    "package.json",
+    "composer.json"
+  ],
+  "gitHead": "839953cfb830aa27e8fd94404a4a6e02fb38a51a",
+  "readme": "Bootstrap\n=========\n\nShim repository for [Bootstrap](http://getbootstrap.com).\n\nThis package just provides the basic Bootstrap JavaScript in the package. This\nmeans that although the stylesheets are there, you will be required to provide\nyour own means of including the styles. If you aim to use the default Bootstrap\nstyles, then you could use the [components/bootstrap-default](http://github.com/components/bootstrap-default)\npackage for that.\n\nPackage Managers\n----------------\n\n* [npm](http://npmjs.org/package/components-bootstrap): `components-bootstrap`\n* [Bower](http://twitter.github.com/bower/): `components-bootstrap`\n* [Component](https://github.com/component/component): `components/bootstrap`\n* [Composer](http://packagist.org/packages/components/bootstrap): `components/bootstrap`\n",
+  "readmeFilename": "README.md",
+  "_id": "components-bootstrap@3.1.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/components/bootstrap.git"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "modules": {
+    "todos": {
+      "module": "todos",
+      "routes": {
+        "/": "index"
+      },
+      "js": [
+        "base.js",
+        "todos.js"
+      ],
+      "css": [
+        "base.css",
+        "todos.css"
+      ]
+    }
+  },
+  "routes": {
+    "/": "todos"
+  },
+  "loadPrefix": "/r/"
+}

@@ -17,7 +17,9 @@
         "js/init.js",
         "js/model.js",
         "js/collection.js",
+        "public/backbone.localStorage.js",
         "js/view.js"
+
       ],
       "styles": [
         "stylesheets/base.css",
@@ -25,6 +27,20 @@
       ],
       "static": [
         {"src": "public/index.html", "dest": "index.html", "update-externals": true, "root": true}
+      ]
+    },
+    "todos": {
+      "routes": {
+          "" : "index"
+      },
+      "scripts": [
+        "js/routers/todos.js",
+        "js/views/todos/index.js",
+        "js/models/todos/todo.js",
+        "js/collections/todos/todos.js"
+      ],
+      "styles": [
+        "stylesheets/todos.css"
       ]
     }
   },
