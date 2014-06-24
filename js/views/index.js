@@ -1,15 +1,18 @@
 Application.View.extend({
   name: "index",
+
+  initialize: function() {
+      this.collection.fetch();
+  },
+
   events: {
       "submit form": function (event) {
-          console.log("Hola");
           event.preventDefault(); //No hace un evio de formulario le quita este valor por defecto
-          var attrs = this.serialize();
-          this.collection.add(attrs);
-          attrs.save();
+          this.collection.create(this.serialize());
           this.$('input[name=title]').val('');
       }
   }
+
 });
 
 // Instances of this view can be created by calling:

@@ -1,8 +1,12 @@
 Application.Model.extend({
   name: "todo",
 
+  initialize: function() {
+    alert("Soy un editor en Genbeta Dev!");
+  },
+    
   defaults: {
-      title: "no title....",
+      title: "",
       done: false
   }
 });

@@ -3,7 +3,7 @@ Application.Collection.extend({
 
   model: Application.Models["todo"],
 
-  localStorage: new Backbone.LocalStorage("TodoCollection")
+  localStorage: new Backbone.LocalStorage("todos-backbone")
 });
 
 // Instances of this collection can be created by calling:

@@ -11,21 +11,20 @@ new (Backbone.Router.extend({
   routes: module.routes,
 
   index: function() {
-      console.log('hello world');
-
-
-      var collection = new Application.Collections.todos();
+      Application.Collections.todos = new Application.Collections["todos"]([]);
 
       var view = new Application.Views["index"] ({
-          collection: collection
+          collection: Application.Collections.todos
       });
       Application.setView(view);
 
   }
+
+
 }));
 ;;
 Handlebars.templates['index'] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var stack1, helper, options, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, buffer = "\n            <li ";
+  var stack1, helper, options, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, buffer = "\n            <li class=\"list\" ";
   stack1 = ((helper = helpers.done || (depth0 && depth0.done)),(options={"name":"done","hash":{},"fn":this.program(2, data),"inverse":this.noop,"data":data}),(typeof helper === functionType ? helper.call(depth0, options) : helper));
   if (!helpers.done) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -41,24 +40,27 @@ Handlebars.templates['index'] = Handlebars.template({"1":function(depth0,helpers
   },"4":function(depth0,helpers,partials,data) {
   return "checked";
   },"compiler":[5,">= 2.0.0"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<div class=\"container\">\n    <div style=\"text-align: center\">\n        <h1>Recordatorios</h1>\n        ";
+  var stack1, buffer = "<div class=\"container\">\n    <div style=\"text-align: center\">\n        <h1>Recordatorios</h1>\n        <form>\n            <input name=\"title\">\n            <input type=\"submit\" value=\"Nueva Tarea\">\n        </form>\n        <br>\n        ";
   stack1 = helpers.collection.call(depth0, {"name":"collection","hash":{
     'tag': ("ul")
   },"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  return buffer + "\n        <form>\n            <input name=\"title\">\n            <input type=\"submit\" value=\"Nueva Tarea\">\n        </form>\n    </div>\n</div>";
+  return buffer + "\n    </div>\n</div>";
 },"useData":true});Application.View.extend({
   name: "index",
+
+  initialize: function() {
+      this.collection.fetch();
+  },
+
   events: {
       "submit form": function (event) {
-          console.log("Hola");
           event.preventDefault(); //No hace un evio de formulario le quita este valor por defecto
-          var attrs = this.serialize();
-          this.collection.add(attrs);
-          attrs.save();
+          this.collection.create(this.serialize());
           this.$('input[name=title]').val('');
       }
   }
+
 });
 
 // Instances of this view can be created by calling:
@@ -67,8 +69,12 @@ Handlebars.templates['index'] = Handlebars.template({"1":function(depth0,helpers
 Application.Model.extend({
   name: "todo",
 
+  initialize: function() {
+    alert("Soy un editor en Genbeta Dev!");
+  },
+    
   defaults: {
-      title: "no title....",
+      title: "",
       done: false
   }
 });
@@ -81,7 +87,7 @@ Application.Collection.extend({
 
   model: Application.Models["todo"],
 
-  localStorage: new Backbone.LocalStorage("TodoCollection")
+  localStorage: new Backbone.LocalStorage("todos-backbone")
 });
 
 // Instances of this collection can be created by calling:
